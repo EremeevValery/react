@@ -30,7 +30,6 @@ var News    =   React.createClass({
                 else {
                     newsTemplate=<p>новостей нет!!!!</p>
                 }
-        console.log(newsTemplate);
         return (
             <div className="news">
                 {newsTemplate}
@@ -40,23 +39,12 @@ var News    =   React.createClass({
     }
 });
 
-var Comments    =   React.createClass({
-        render: function()  {
-                return  (
-                        <div    className="comments">
-                                Нет новостей-комментировать  нечего.
-                        </div>
-                );
-        }
-});
-
 var   App =   React.createClass({
         render: function()  {
                 return  (
                         <div    className="app">
                                 Всем    привет, я   компонент   App!    Я   умею    отображать  новости.
                             <News data={my_news}/>
-                            <Comments />
                         </div>
 
                 );
