@@ -24,16 +24,22 @@ var Article =   React.createClass({
                         bigText:   React.PropTypes.string.isRequired
                 })
         },
+        getInitialState:    function()  {
+                return  {
+                        visible:    false
+                };
+            },
         render: function()  {
                 var author  =   this.props.data.author;
                 var text    =   this.props.data.text;
                 var bigText =   this.props.data.bigText;
+                var visible =   this.state.visible;
                 return  (
                         <div    className="article">
                                 <p  className="news__author">{author}:</p>
                                 <p  className="news__text">{text}</p>
-                                <a   href="#"    className='news__readmore'>Подробнее</a>
-                                <p  className="news__text">{bigText}</p>
+                                <a   href="#"    className={'news__readmore ' + (visible ?'none':'')}>Подробнее</a>
+                                <p  className={"news__big-text "+ (visible ? '':'none')}>{bigText}</p>
                         </div>
                 )
         }
