@@ -1,5 +1,5 @@
 var my_news =   [
-        /*{
+        {
                 author: 'Саша   Печкин',
                 text:   'В  четверг,    четвертого  числа...'
         },
@@ -10,10 +10,16 @@ var my_news =   [
         {
                 author: 'Гость',
                 text:   'Бесплатно. Скачать.    Лучший  сайт    -   http://localhost:3000'
-        }*/
+        }
 ];
 
 var Article =   React.createClass({
+        propTypes:  {
+                data:   React.PropTypes.shape({
+                        author: React.PropTypes.string.isRequired,
+                        text:   React.PropTypes.string.isRequired
+                })
+        },
         render: function()  {
                 var author  =   this.props.data.author;
                 var text    =   this.props.data.text;
@@ -27,6 +33,9 @@ var Article =   React.createClass({
 });
 
 var News    =   React.createClass({
+        propTypes:  {
+                data:   React.PropTypes.array.isRequired
+        },
         render: function()   {
                 var data = this.props.data;
                 var newsTemplate;
@@ -35,7 +44,7 @@ var News    =   React.createClass({
                     newsTemplate = data.map(function(item,index) {
                         return  (
                           <div key={index}>
-                            <Article    data={item} />
+                            <Article data={item} />
                           </div>
                         )
                     })
