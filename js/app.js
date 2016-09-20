@@ -35,6 +35,14 @@ var TestInput = React.createClass({
                     />
                 )
         }
+});
+
+var ButtonAlert = React.createClass({
+    render: function () {
+        return (
+            <button className='buttonAlert'>Кнопка</button>
+        )
+    }
 })
 
 var Article =   React.createClass({
@@ -105,6 +113,7 @@ var   App =   React.createClass({
                         <div    className="app">
                                 <h3>Новости</h3>
                             <TestInput />
+                            <ButtonAlert />
                             <News data={my_news}/>
                         </div>
 
