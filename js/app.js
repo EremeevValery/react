@@ -23,11 +23,16 @@ var TestInput = React.createClass({
             };
         },
         onChangeHandler:function(e){
-            this.setState({value:e.target.value});
+            this.setState({myValue:e.target.value});
         },
         render: function() {
                 return (
-                    <input onChange={this.onChangeHandler} className='test-input'   placeholder='введите  значение' />
+                    <input 
+                        onChange={this.onChangeHandler} 
+                        className='test-input'   
+                        placeholder='введите  значение' 
+                        value={this.state.myValue}
+                    />
                 )
         }
 })
