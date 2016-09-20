@@ -25,25 +25,27 @@ var TestInput = React.createClass({
         onChangeHandler:function(e){
             this.setState({myValue:e.target.value});
         },
+        onClickHandler: function(e) {
+          alert(this.state.myValue);
+        },
         render: function() {
                 return (
-                    <input 
-                        onChange={this.onChangeHandler} 
-                        className='test-input'   
-                        placeholder='введите  значение' 
-                        value={this.state.myValue}
-                    />
+                    <div>
+                        <input 
+                            onChange={this.onChangeHandler} 
+                            className='test-input'   
+                            placeholder='введите  значение' 
+                            value={this.state.myValue}
+                        />
+                        <button 
+                            onClick={this.onClickHandler} 
+                            className='buttonAlert'
+                            >Кнопка
+                        </button>
+                    </div>
                 )
         }
 });
-
-var ButtonAlert = React.createClass({
-    render: function () {
-        return (
-            <button className='buttonAlert'>Кнопка</button>
-        )
-    }
-})
 
 var Article =   React.createClass({
         propTypes:  {
@@ -113,7 +115,6 @@ var   App =   React.createClass({
                         <div    className="app">
                                 <h3>Новости</h3>
                             <TestInput />
-                            <ButtonAlert />
                             <News data={my_news}/>
                         </div>
 
