@@ -38,7 +38,6 @@ var Article =   React.createClass({
                 var text    =   this.props.data.text;
                 var bigText =   this.props.data.bigText;
                 var visible =   this.state.visible;
-                console.log('render',this);
                 return  (
                         <div    className="article">
                                 <p  className="news__author">{author}:</p>
@@ -53,16 +52,6 @@ var Article =   React.createClass({
 var News    =   React.createClass({
         propTypes:  {
                 data:   React.PropTypes.array.isRequired
-        },
-        getInitialState:    function()  {
-                return  {
-                        counter:0
-                };
-        },
-        onTotalNewsClick:  function(e) {
-                this.setState({
-                    counter:++this.state.counter
-                });
         },
         render: function()   {
                 var data = this.props.data;
@@ -83,7 +72,7 @@ var News    =   React.createClass({
         return (
             <div className="news">
                 {newsTemplate}
-                <strong onClick={this.onTotalNewsClick} className={'news__count ' + (data.length>0 ? '':'none')}> Вcего новостей = {data.length}</strong>
+                <strong className={'news__count ' + (data.length>0 ? '':'none')}> Вcего новостей = {data.length}</strong>
             </div>
         );
     }
