@@ -16,6 +16,14 @@ var my_news =   [
         },
 ];
 
+var TestInput = React.createClass({
+        render: function() {
+                return (
+                    <input className='test-input'   value='введите  значение' />
+                )
+        }
+})
+
 var Article =   React.createClass({
         propTypes:  {
                 data:   React.PropTypes.shape({
@@ -83,6 +91,7 @@ var   App =   React.createClass({
                 return  (
                         <div    className="app">
                                 <h3>Новости</h3>
+                            <TestInput />
                             <News data={my_news}/>
                         </div>
 
