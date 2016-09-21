@@ -16,34 +16,41 @@ var my_news =   [
         },
 ];
 
-var TestInput = React.createClass({
-        getInitialState: function() {
-            return{
-                myValue:''
-            };
+var Add =   React.createClass({
+        componentDidMount:  function()  {
+                ReactDOM.findDOMNode(this.refs.author).focus();
         },
-        onChangeHandler:function(e){
-            this.setState({myValue:e.target.value});
+        onBtnClickHandler:  function(e) {
+                e.preventDefault();
         },
-        onClickHandler: function(e) {
-          alert(this.state.myValue);
-        },
-        render: function() {
-                return (
-                    <div>
-                        <input 
-                            onChange={this.onChangeHandler} 
-                            className='test-input'   
-                            placeholder='введите  значение' 
-                            value={this.state.myValue}
-                        />
-                        <button 
-                            onClick={this.onClickHandler} 
-                            className='buttonAlert'
-                            >Кнопка
-                        </button>
-                    </div>
-                )
+        render: function()  {
+                return  (
+                        <form   className='add  cf'>
+                                <input
+                                        type='text'
+                                        className='add__author'
+                                        defaultValue=''
+                                        placeholder='Ваше   имя'
+                                        ref='author'
+                                />
+                                <textarea
+                                        className='add__text'
+                                        defaultValue=''
+                                        placeholder='Текст  новости'
+                                        ref='text'
+                                ></textarea>
+                                <label  className='add__checkrule'>
+                                        <input  type='checkbox' defaultChecked={false}  ref='checkrule' />Я согласен    с
+    правилами
+                                </label>
+                                <button
+                                        className='add__btn'
+                                        onClick={this.onBtnClickHandler}
+                                        ref='alert_button'>
+                                        Показать    alert
+                                </button>
+                        </form>
+                );
         }
 });
 
@@ -113,8 +120,8 @@ var   App =   React.createClass({
         render: function()  {
                 return  (
                         <div    className="app">
+                            <Add />
                                 <h3>Новости</h3>
-                            <TestInput />
                             <News data={my_news}/>
                         </div>
 
