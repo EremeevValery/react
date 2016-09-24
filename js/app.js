@@ -17,11 +17,40 @@ var my_news =   [
 ];
 
 var Add =   React.createClass({
+        getInitialState: function () {
+                return {
+                    agreeIsNotChecked: true,
+                    authorIsEmpty: true,
+                    textIsEmpty: true
+                };
+        },
         componentDidMount:  function()  {
                 ReactDOM.findDOMNode(this.refs.author).focus();
         },
         onBtnClickHandler:  function(e) {
                 e.preventDefault();
+                var author = ReactDOM.findDOMNode(this.refs.author).value;
+                var text = ReactDOM.findDOMNode(this.refs.text).value;
+                alert(author +'\n'+ text);
+        },
+        onAgreeChange: function(e) {
+                this.setState({agreeIsNotChecked: !this.state.agreeIsNotChecked});
+        },
+        onAuthorChange: function(e) {
+                if(e.target.value.trim().length>0) {
+                    this.setState({authorIsEmpty:false})
+                }
+                else {
+                    this.setState({authorIsEmpty:true})
+                }
+        },
+        onTextChange: function(e) {
+                if(e.target.value.trim().length>0) {
+                    this.setState({textIsEmpty:false})
+                }
+                else {
+                    this.setState({textIsEmpty:true})
+                }
         },
         render: function()  {
                 return  (
@@ -32,21 +61,29 @@ var Add =   React.createClass({
                                         defaultValue=''
                                         placeholder='Ваше   имя'
                                         ref='author'
+                                        onChange={this.onAuthorChange}
                                 />
                                 <textarea
                                         className='add__text'
                                         defaultValue=''
                                         placeholder='Текст  новости'
                                         ref='text'
+                                        onChange={this.onTextChange}
                                 ></textarea>
                                 <label  className='add__checkrule'>
-                                        <input  type='checkbox' defaultChecked={false}  ref='checkrule' />Я согласен    с
-    правилами
+                                        <input  type='checkbox'
+                                        defaultChecked={false}
+                                        onChange={this.onAgreeChange}
+                                        ref='checkrule' />
+                                        Я согласен    с    правилами
                                 </label>
                                 <button
                                         className='add__btn'
                                         onClick={this.onBtnClickHandler}
-                                        ref='alert_button'>
+                                        ref='alert_button' 
+                                        disabled={this.state.agreeIsNotChecked || 
+                                        this.state.authorIsEmpty ||
+                                        this.state.textIsEmpty}>
                                         Показать    alert
                                 </button>
                         </form>
