@@ -1,3 +1,4 @@
+'use strict';
 var my_news =   [
         {
                 author: 'Саша   Печкин',
@@ -15,7 +16,7 @@ var my_news =   [
                 bigText:    'На самом   деле    платно, просто  нужно   прочитать   очень   длинное лицензионное соглашение'
         },
 ];
-
+window.ee = new EventEmitter();
 var Add =   React.createClass({
         getInitialState: function () {
                 return {
@@ -29,9 +30,13 @@ var Add =   React.createClass({
         },
         onBtnClickHandler:  function(e) {
                 e.preventDefault();
+                var textEl  =   ReactDOM.findDOMNode(this.refs.text)
                 var author = ReactDOM.findDOMNode(this.refs.author).value;
-                var text = ReactDOM.findDOMNode(this.refs.text).value;
-                alert(author +'\n'+ text);
+                var text = textEl.value;
+                var item = [{author:author,text:text, bigText: '...'}];
+                window.ee.emit('News.add', item);
+                textEl.value = '';
+                this.setState({textIsEmpty: true});
         },
         onAgreeChange: function(e) {
                 this.setState({agreeIsNotChecked: !this.state.agreeIsNotChecked});
@@ -160,10 +165,14 @@ var   App =   React.createClass({
                 };
         },
         componentDidMount: function() {
-
+                var self = this;
+                window.ee.addListener('News.add', function(item){
+                    var nextNews = item.concat(self.state.news);
+                    self.setState({news:nextNews});
+                })
         },
         componentWillUnmount: function() {
-
+                window.ee.removeListener('News.add');
         },
         render: function()  {
                 console.log('render');
