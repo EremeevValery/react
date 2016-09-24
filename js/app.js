@@ -89,7 +89,7 @@ var Add =   React.createClass({
                                         disabled={this.state.agreeIsNotChecked || 
                                         this.state.authorIsEmpty ||
                                         this.state.textIsEmpty}>
-                                        Показать    alert
+                                        Добавить новость
                                 </button>
                         </form>
                 );
