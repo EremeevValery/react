@@ -154,12 +154,24 @@ var News    =   React.createClass({
 });
 
 var   App =   React.createClass({
+        getInitialState: function() {
+                return {
+                    news: my_news
+                };
+        },
+        componentDidMount: function() {
+
+        },
+        componentWillUnmount: function() {
+
+        },
         render: function()  {
+                console.log('render');
                 return  (
                         <div    className="app">
                             <Add />
-                                <h3>Новости</h3>
-                            <News data={my_news}/>
+                            <h3>Новости</h3>
+                            <News data={this.state.news}/>
                         </div>
 
                 );
